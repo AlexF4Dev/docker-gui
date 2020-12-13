@@ -7,7 +7,10 @@ services:
     cap_add:
       #Google Chrome require this: https://github.com/jessfraz/dockerfiles/issues/65
       - SYS_ADMIN
+    security_opt:
+      - seccomp:chromium.json      
     ports:
       - '80:80'
     environment:
-      - USER=ubuntu
+      - USER=alex
+      - PASSWORD=password
