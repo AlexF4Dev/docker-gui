@@ -1,16 +1,21 @@
 version: '2'
 services:
   novnc:
+    build:
+      context: .
+      shm_size: '2gb' # this will set the size when BUILDING
+    shm_size: '2gb' # when RUNNING 
     #image: dorowu/ubuntu-desktop-lxde-vnc:focal
     image: dorowu/ubuntu-desktop-lxde-vnc
     hostname: noVNClinux
-    cap_add:
+    #cap_add:
       #Google Chrome require this: https://github.com/jessfraz/dockerfiles/issues/65
-      - SYS_ADMIN
+     # - SYS_ADMIN
     security_opt:
       - seccomp:chromium.json      
     ports:
       - '80:80'
     environment:
       - USER=alex
-      - PASSWORD=password
+      - PASSWORD=p@ssw0rd
+      - VNC_PASSWORD=p@ssw0rd
